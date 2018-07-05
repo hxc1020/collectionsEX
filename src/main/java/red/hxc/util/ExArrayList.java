@@ -1,9 +1,9 @@
 package red.hxc.util;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -107,6 +107,161 @@ public class ExArrayList<E> extends ArrayList<E> implements ExList<E> {
             return this;
         this.sort(comparator);
         return this;
+    }
+
+    @Override
+    public boolean all(Predicate<E> condition) {
+        return false;
+    }
+
+    @Override
+    public boolean any(Predicate<E> condition) {
+        return false;
+    }
+
+    @Override
+    public boolean none() {
+        return false;
+    }
+
+    @Override
+    public boolean none(Predicate<E> condition) {
+        return false;
+    }
+
+    @Override
+    public Long countBy(Predicate<E> condition) {
+        return null;
+    }
+
+    @Override
+    public BigDecimal sumBy(Function<E, BigDecimal> mapper) {
+        return null;
+    }
+
+    @Override
+    public BigDecimal averageBy(Function<E, BigDecimal> mapper) {
+        return null;
+    }
+
+    @Override
+    public <K> ExList<E> distinctBy(Function<E, K> mapper) {
+        return null;
+    }
+
+    @Override
+    public ExList<E> find(Predicate<E> condition) {
+        return null;
+    }
+
+    @Override
+    public <K, V> Map<K, V> associate(Function<E, Pair<K, V>> mapper) {
+        return null;
+    }
+
+    @Override
+    public <K> Map<K, E> associateBy(Function<E, K> mapper) {
+        return null;
+    }
+
+    @Override
+    public <K> Map<K, ExList<E>> grouppingBy(Function<E, K> mapper) {
+        return null;
+    }
+
+    @Override
+    public <K, V> Map<K, ExList<V>> grouppingBy(Function<E, K> keyMapper, Function<E, V> valueMapper) {
+        return null;
+    }
+
+    @Override
+    public ExList<E> intersectionWith(ExList<E> otherList) {
+        return null;
+    }
+
+    @Override
+    public <T> ExList<E> intersectionWith(ExList<T> otherList, Function<T, E> mapper) {
+        return null;
+    }
+
+    @Override
+    public ExList<E> unionWith(ExList<E> otherList) {
+        return null;
+    }
+
+    @Override
+    public <T> ExList<E> unionWith(ExList<T> otherList, Function<T, E> mapper) {
+        return null;
+    }
+
+    @Override
+    public ExList<E> complementWith(ExList<E> otherList) {
+        return null;
+    }
+
+    @Override
+    public <T> ExList<E> complementWith(ExList<T> otherList, Function<T, E> mapper) {
+        return null;
+    }
+
+    @Override
+    public BigDecimal sum() {
+        return null;
+    }
+
+    @Override
+    public BigDecimal average() {
+        return null;
+    }
+
+    @Override
+    public Pair<ExList<E>, ExList<E>> partition(Predicate<E> condition) {
+        return null;
+    }
+
+    @Override
+    public <T> ExList<Pair<E, T>> zip(ExList<T> otherList) {
+        return null;
+    }
+
+    @Override
+    public <T, R> ExList<R> zip(ExList<T> otherList, BiFunction<E, T, R> mapper) {
+        return null;
+    }
+
+    @Override
+    public <T> ExList<Pair<E, T>> leftJoinOn(ExList<T> otherList, BiPredicate<E, T> condition) {
+        return null;
+    }
+
+    @Override
+    public <T> ExList<Pair<E, T>> innerJoinOn(ExList<T> otherList, BiPredicate<E, T> condition) {
+        return null;
+    }
+
+    @Override
+    public String joinToString(String separator) {
+        return null;
+    }
+
+    @Override
+    public String joinToString(Appendable buffer, String separator) {
+        return null;
+    }
+
+    @Override
+    public String joinToString(Appendable buffer, String separator, String prefix, String postfix) {
+        return null;
+    }
+
+    @Override
+    public String joinToString(Appendable buffer, String separator, int limit, String truncated) {
+        return null;
+    }
+
+    @Override
+    public String joinToString(Appendable buffer, String separator, String prefix, String postfix, int limit, String truncated) {
+        return null;
     }
 
     private void checkEmpty() {
