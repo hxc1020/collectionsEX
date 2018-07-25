@@ -10,34 +10,34 @@ import java.util.function.Predicate;
 /**
  * Create by linhao3 on 2018/6/28.
  */
-public class ExArrayList<E> extends ArrayList<E> implements ExList<E> {
+public class ExArrayList<T> extends ArrayList<T> implements ExList<T> {
 
     @Override
-    public E first() {
+    public T first() {
         checkEmpty();
 
         return this.get(0);
     }
 
     @Override
-    public E first(Predicate<E> condition) {
+    public T first(Predicate<T> condition) {
         checkEmpty();
 
-        for (E e : this) {
-            if (condition.test(e)) {
-                return e;
+        for (T T : this) {
+            if (condition.test(T)) {
+                return T;
             }
         }
         return null;
     }
 
     @Override
-    public E maxBy(Function<E, Comparable> mapper) {
+    public T maxBy(Function<T, Comparable> mapper) {
         checkEmpty();
 
         if (this.size() == 1) return this.first();
 
-        Optional<Pair<E, Comparable>> reduce = this.stream().map(it -> new Pair<>(it, mapper.apply(it)))
+        Optional<Pair<T, Comparable>> reduce = this.stream().map(it -> new Pair<>(it, mapper.apply(it)))
                 .reduce((a, b) -> {
                     if (a.getSecond().compareTo(b.getSecond()) < 0)
                         a = b;
@@ -47,12 +47,12 @@ public class ExArrayList<E> extends ArrayList<E> implements ExList<E> {
     }
 
     @Override
-    public E maxWith(Comparator<E> comparator) {
+    public T maxWith(Comparator<T> comparator) {
         checkEmpty();
 
         if (this.size() == 1) return this.first();
 
-        Optional<E> reduce = this.stream().reduce((a, b) -> {
+        Optional<T> reduce = this.stream().reduce((a, b) -> {
             if (comparator.compare(a, b) < 0)
                 a = b;
             return a;
@@ -61,12 +61,12 @@ public class ExArrayList<E> extends ArrayList<E> implements ExList<E> {
     }
 
     @Override
-    public E minBy(Function<E, Comparable> mapper) {
+    public T minBy(Function<T, Comparable> mapper) {
         checkEmpty();
 
         if (this.size() == 1) return this.first();
 
-        Optional<Pair<E, Comparable>> reduce = this.stream().map(it -> new Pair<>(it, mapper.apply(it)))
+        Optional<Pair<T, Comparable>> reduce = this.stream().map(it -> new Pair<>(it, mapper.apply(it)))
                 .reduce((a, b) -> {
                     if (a.getSecond().compareTo(b.getSecond()) > 0)
                         a = b;
@@ -76,12 +76,12 @@ public class ExArrayList<E> extends ArrayList<E> implements ExList<E> {
     }
 
     @Override
-    public E minWith(Comparator<E> comparator) {
+    public T minWith(Comparator<T> comparator) {
         checkEmpty();
 
         if (this.size() == 1) return this.first();
 
-        Optional<E> reduce = this.stream().reduce((a, b) -> {
+        Optional<T> reduce = this.stream().reduce((a, b) -> {
             if (comparator.compare(a, b) > 0)
                 a = b;
             return a;
@@ -90,19 +90,19 @@ public class ExArrayList<E> extends ArrayList<E> implements ExList<E> {
     }
 
     @Override
-    public ExList<E> sortedBy(Function<E, Comparable> mapper) {
-        Comparator<E> comparator = ExCollections.compareBy(mapper);
+    public ExList<T> sortedBy(Function<T, Comparable> mapper) {
+        Comparator<T> comparator = ExCollections.compareBy(mapper);
         return this.sortedWith(comparator);
     }
 
     @Override
-    public ExList<E> sortedDescBy(Function<E, Comparable> mapper) {
-        Comparator<E> comparator = ExCollections.compareDescBy(mapper);
+    public ExList<T> sortedDescBy(Function<T, Comparable> mapper) {
+        Comparator<T> comparator = ExCollections.compareDescBy(mapper);
         return this.sortedWith(comparator);
     }
 
     @Override
-    public ExList<E> sortedWith(Comparator<E> comparator) {
+    public ExList<T> sortedWith(Comparator<T> comparator) {
         if (this.size() <= 1)
             return this;
         this.sort(comparator);
@@ -110,12 +110,12 @@ public class ExArrayList<E> extends ArrayList<E> implements ExList<E> {
     }
 
     @Override
-    public boolean all(Predicate<E> condition) {
+    public boolean all(Predicate<T> condition) {
         return false;
     }
 
     @Override
-    public boolean any(Predicate<E> condition) {
+    public boolean any(Predicate<T> condition) {
         return false;
     }
 
@@ -125,82 +125,82 @@ public class ExArrayList<E> extends ArrayList<E> implements ExList<E> {
     }
 
     @Override
-    public boolean none(Predicate<E> condition) {
+    public boolean none(Predicate<T> condition) {
         return false;
     }
 
     @Override
-    public Long countBy(Predicate<E> condition) {
+    public Long countBy(Predicate<T> condition) {
         return null;
     }
 
     @Override
-    public BigDecimal sumBy(Function<E, BigDecimal> mapper) {
+    public BigDecimal sumBy(Function<T, BigDecimal> mapper) {
         return null;
     }
 
     @Override
-    public BigDecimal averageBy(Function<E, BigDecimal> mapper) {
+    public BigDecimal averageBy(Function<T, BigDecimal> mapper) {
         return null;
     }
 
     @Override
-    public <K> ExList<E> distinctBy(Function<E, K> mapper) {
+    public <K> ExList<T> distinctBy(Function<T, K> mapper) {
         return null;
     }
 
     @Override
-    public ExList<E> find(Predicate<E> condition) {
+    public ExList<T> find(Predicate<T> condition) {
         return null;
     }
 
     @Override
-    public <K, V> Map<K, V> associate(Function<E, Pair<K, V>> mapper) {
+    public <K, V> Map<K, V> associate(Function<T, Pair<K, V>> mapper) {
         return null;
     }
 
     @Override
-    public <K> Map<K, E> associateBy(Function<E, K> mapper) {
+    public <K> Map<K, T> associateBy(Function<T, K> mapper) {
         return null;
     }
 
     @Override
-    public <K> Map<K, ExList<E>> grouppingBy(Function<E, K> mapper) {
+    public <K> Map<K, ExList<T>> grouppingBy(Function<T, K> mapper) {
         return null;
     }
 
     @Override
-    public <K, V> Map<K, ExList<V>> grouppingBy(Function<E, K> keyMapper, Function<E, V> valueMapper) {
+    public <K, V> Map<K, ExList<V>> grouppingBy(Function<T, K> keyMapper, Function<T, V> valueMapper) {
         return null;
     }
 
     @Override
-    public ExList<E> intersectionWith(ExList<E> otherList) {
+    public ExList<T> intersectionWith(ExList<T> otherList) {
         return null;
     }
 
     @Override
-    public <T> ExList<E> intersectionWith(ExList<T> otherList, Function<T, E> mapper) {
+    public <A> ExList<T> intersectionWith(ExList<A> otherList, Function<A, T> mapper) {
         return null;
     }
 
     @Override
-    public ExList<E> unionWith(ExList<E> otherList) {
+    public ExList<T> unionWith(ExList<T> otherList) {
         return null;
     }
 
     @Override
-    public <T> ExList<E> unionWith(ExList<T> otherList, Function<T, E> mapper) {
+    public <A> ExList<T> unionWith(ExList<A> otherList, Function<A, T> mapper) {
         return null;
     }
 
     @Override
-    public ExList<E> complementWith(ExList<E> otherList) {
+    public ExList<T> complementWith(ExList<T> otherList) {
         return null;
     }
 
     @Override
-    public <T> ExList<E> complementWith(ExList<T> otherList, Function<T, E> mapper) {
+    public <A> ExList<T> complementWith(ExList<A> otherList, Function<A, T> mapper) {
         return null;
     }
 
@@ -215,27 +215,27 @@ public class ExArrayList<E> extends ArrayList<E> implements ExList<E> {
     }
 
     @Override
-    public Pair<ExList<E>, ExList<E>> partition(Predicate<E> condition) {
+    public Pair<ExList<T>, ExList<T>> partition(Predicate<T> condition) {
         return null;
     }
 
     @Override
-    public <T> ExList<Pair<E, T>> zip(ExList<T> otherList) {
+    public <A> ExList<Pair<T, A>> zip(ExList<A> otherList) {
         return null;
     }
 
     @Override
-    public <T, R> ExList<R> zip(ExList<T> otherList, BiFunction<E, T, R> mapper) {
+    public <A, R> ExList<R> zip(ExList<A> otherList, BiFunction<T, A, R> mapper) {
         return null;
     }
 
     @Override
-    public <T> ExList<Pair<E, T>> leftJoinOn(ExList<T> otherList, BiPredicate<E, T> condition) {
+    public <A> ExList<Pair<T, A>> leftJoinOn(ExList<A> otherList, BiPredicate<T, A> condition) {
         return null;
     }
 
     @Override
-    public <T> ExList<Pair<E, T>> innerJoinOn(ExList<T> otherList, BiPredicate<E, T> condition) {
+    public <A> ExList<Pair<T, A>> innerJoinOn(ExList<A> otherList, BiPredicate<T, A> condition) {
         return null;
     }
 
